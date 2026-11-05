@@ -41,6 +41,20 @@ The canvas accepts an optional `artifactRoot` containing only simple directory s
 
 ## Add another SOP artifact
 
+### SOP generated from `source-videos/input.mp4`
+
+The `sop-artifacts/copilot-cli-startup/` bundle documents the supplied 58.4-second
+recording: launching Copilot CLI, reviewing the session model and approval policy,
+inspecting command suggestions and MCP status, and confirming a greeting response.
+It is separate from the Mona webpage sample. Open its self-contained
+`copilot-cli-startup-sop.html` in a browser, or use the **Video to SOP** canvas with
+`{"documentId":"copilot-cli-startup"}`. The bundle includes eight timestamped,
+terminal-cropped evidence images; the launch image masks the personal working path.
+Audio was not assessed. The demonstrated Allow All policy is not the recommended
+default, and the document requires process-owner review.
+
+### Bundle structure
+
 Create a bundle below a workspace-relative artifact root:
 
 ```text
