@@ -1,0 +1,134 @@
+{
+  "documentId": "copilot-cli-startup",
+  "reference": "SOP-CLI-STARTUP-001",
+  "version": "0.1",
+  "status": "Draft - process-owner review required",
+  "title": "Start Copilot CLI and verify a basic conversation",
+  "subtitle": "Launch the CLI, review the session model and permissions, and send a greeting.",
+  "purpose": "Prepare a GitHub Copilot CLI session on Windows and confirm that it responds to a simple text prompt. This procedure does not validate code generation, tool execution, or individual MCP server functionality.",
+  "source": {
+    "name": "input.mp4",
+    "durationSeconds": 58.4,
+    "method": "Visual review of timestamped frames extracted locally from the supplied 1920 x 1080, 30 fps recording. Audio has not been transcribed or assessed.",
+    "note": "Evidence images are cropped to the terminal window for readability; the Windows user path in the launch image is masked. Timestamps locate sampled evidence, not exact action boundaries. The recorded CLI identifies itself as v1.0.105 with experimental features; commands and labels can differ in other versions."
+  },
+  "prerequisites": [
+    "A Windows workstation with PowerShell or Windows Terminal.",
+    "GitHub Copilot CLI installed, available as copilot, and authenticated with an account entitled to use it. Installation, authentication, and licensing are not demonstrated.",
+    "A dedicated, approved working folder. The recording launches from a user home directory; using that broad directory is not a requirement.",
+    "Access to an approved model. The recorded session uses GPT-6.1 Sol with Medium reasoning.",
+    "Only if MCP connectivity is required: approved MCP servers configured and authenticated separately. Their configuration is not shown.",
+    "An operator authorized to choose the session model and permission policy, and a process owner to review this draft."
+  ],
+  "warnings": [
+    "Retain Manual Approval unless an explicitly approved workflow requires otherwise. The recording enables Allow All, automatically approving tool, path, and URL requests for the session; this is not required for a greeting.",
+    "Model selection does not grant tool permissions. Confirm model, reasoning level, execution mode, and approval policy independently.",
+    "The MCP connection count is a status message, not proof that each server or tool works. The command or event that triggered the reload is not visible in the reviewed frames.",
+    "The recording only browses slash-command suggestions for sandbox and skills; it does not demonstrate changing sandbox settings or executing a skill.",
+    "Do not enter credentials or sensitive business data into a test prompt. Review screenshots for environment-specific context before distribution.",
+    "No generated files, webpage, remote session, or mobile workflow are demonstrated in this recording."
+  ],
+  "steps": [
+    {
+      "id": "launch",
+      "title": "Launch Copilot CLI",
+      "timestampSeconds": 10,
+      "frame": "frame-010.jpg",
+      "caption": "PowerShell shows the copilot launch command; the personal working path is masked.",
+      "instruction": "Open PowerShell in a dedicated, approved working folder. Type copilot and press Enter.",
+      "command": "copilot",
+      "expected": "The terminal transitions from PowerShell into the interactive GitHub Copilot CLI.",
+      "caution": "Choosing a dedicated folder is a safety recommendation, not an action shown in the recording. If the command is unavailable or authentication is requested, complete your approved setup process before continuing.",
+      "evidence": "Observed launch command at 00:10; interactive CLI visible at 00:15"
+    },
+    {
+      "id": "ready",
+      "title": "Check the interactive session",
+      "timestampSeconds": 15,
+      "frame": "frame-015.jpg",
+      "caption": "Copilot shows its welcome screen, Current tab, getting-started commands, and input field.",
+      "instruction": "Confirm that the Copilot welcome screen and input field are visible. Allow startup loading to finish before sending a request.",
+      "expected": "The session accepts input and displays its current model and permission status as loading completes.",
+      "caution": "The evidence frame still shows a Loading status. It establishes startup progress, not completed initialization. Installation and sign-in are outside the recorded scope.",
+      "evidence": "Observed welcome screen and startup loading indicator"
+    },
+    {
+      "id": "model",
+      "title": "Review and confirm the session model",
+      "timestampSeconds": 25,
+      "frame": "frame-025.jpg",
+      "caption": "The model picker highlights GPT-6.1 Sol with Medium reasoning.",
+      "instruction": "Enter /model. Review the available models, use the displayed navigation controls to highlight an approved model, and press Enter to select it. For the recorded configuration, select GPT-6.1 Sol with Medium reasoning.",
+      "command": "/model",
+      "expected": "The picker closes and a model confirmation appears. In the recording the same model and reasoning level are reconfirmed; a different model is not demonstrated.",
+      "caution": "The picker states that this selection is session-only. Do not copy the displayed token pricing into purchasing guidance or assume that this model is available in every environment.",
+      "evidence": "Observed /model suggestions at 00:20, model picker at 00:25, and session confirmation at 00:28"
+    },
+    {
+      "id": "permissions",
+      "title": "Verify the approval policy",
+      "timestampSeconds": 32,
+      "frame": "frame-032.jpg",
+      "caption": "The recording reports Allow All for this session and Interactive execution mode.",
+      "instruction": "Check the approval-policy label in the status bar. For ordinary use, retain Manual Approval. The recording browses /yolo and then shows Allow All; reproduce that setting only when separately authorized by your organization.",
+      "expected": "The displayed approval policy matches the authorized workflow. A basic greeting can proceed without enabling Allow All.",
+      "caution": "The recorded confirmation says all tool, path, and URL requests will be automatically approved for this session, while future-session defaults are unchanged. This SOP does not authorize that policy change. If an unintended Allow All policy is active, the recorded command help lists /yolo off to disable automatic approval; confirm the resulting status before proceeding.",
+      "evidence": "Observed /yolo command help at 00:30 and Allow All confirmation at 00:32; safer Manual Approval path is recommended, not demonstrated"
+    },
+    {
+      "id": "commands",
+      "title": "Inspect command suggestions if needed",
+      "timestampSeconds": 38,
+      "frame": "frame-038.jpg",
+      "caption": "Typing /s displays suggestions including /skills; an earlier frame shows /sandbox.",
+      "instruction": "Optionally type a slash-command prefix to inspect the available suggestions. Clear the incomplete input before continuing. This discovery step can be skipped for the greeting test.",
+      "expected": "The suggestion list updates without requiring a settings change or skill execution.",
+      "caution": "Do not submit a command merely to reproduce the screenshot. The recording does not establish that a skill was run or that sandbox settings changed.",
+      "evidence": "Observed suggestion browsing at 00:35 and 00:38 only"
+    },
+    {
+      "id": "mcp-status",
+      "title": "Review MCP status when relevant",
+      "timestampSeconds": 43,
+      "frame": "frame-043.jpg",
+      "caption": "The CLI reports: MCP Servers reloaded: 5 servers connected.",
+      "instruction": "If your workflow depends on MCP, inspect the connection status and confirm it matches your approved configuration. For a text-only greeting, do not add or connect servers just to match the recording.",
+      "expected": "The recording shows five connected servers. Your expected count depends on your configuration; this is not a universal success threshold.",
+      "caution": "No reload command is visible in the reviewed frames, so none is prescribed here. If a required server is disconnected or needs authentication, stop the dependent workflow and follow its approved connection procedure. Verify required tools separately.",
+      "evidence": "Observed connection-status message, not a functional MCP tool test"
+    },
+    {
+      "id": "greeting",
+      "title": "Submit a non-sensitive test prompt",
+      "timestampSeconds": 50,
+      "frame": "frame-050.jpg",
+      "caption": "The submitted Hello World ! prompt is visible while Copilot is working.",
+      "instruction": "Enter the greeting below in the Copilot input field and press Enter. Wait for the assistant to finish responding.",
+      "command": "Hello World !",
+      "expected": "The prompt appears in the conversation and the CLI displays a working indicator while generating its response.",
+      "caution": "A working indicator is not completion. If an error appears or no response arrives, inspect the displayed error and account/network status rather than treating submission as success.",
+      "evidence": "Observed submitted greeting and Working status"
+    },
+    {
+      "id": "verify",
+      "title": "Verify the Copilot response",
+      "timestampSeconds": 57,
+      "frame": "frame-057.jpg",
+      "caption": "Copilot replies Hello, world! with a waving-hand symbol, and the input prompt returns.",
+      "instruction": "Confirm that an assistant greeting appears and that the input field is available again. Treat this as completion of the basic conversation check only. Before further work, reconfirm the intended folder and approval policy.",
+      "expected": "A completed text response and a ready input field. The recorded reply reads Hello, world!; wording can vary.",
+      "caution": "This does not validate tool execution, code quality, file creation, sandbox isolation, or MCP functionality. Restoring a safer approval policy is recommended but is not shown at the end of the video.",
+      "evidence": "Observed assistant response and ready prompt at 00:57"
+    }
+  ],
+  "reviewChecklist": [
+    "Process owner: confirm scope, operator prerequisites, and the approved working-folder policy.",
+    "Validate command names and keyboard controls against the target CLI version; the recording uses experimental features.",
+    "Approve the model and reasoning setting separately from the permission policy.",
+    "Confirm that Manual Approval is the normal path; document any separately authorized exception for Allow All.",
+    "If MCP is required, verify each needed tool and its authentication independently of the connection count.",
+    "Review the full recording and any narration; this draft uses visual evidence only and does not claim exhaustive frame-by-frame coverage.",
+    "Review cropped evidence and the masked launch path for remaining environment-specific information before sharing.",
+    "Perform the procedure in the target environment, record the result, and obtain process-owner approval before operational publication."
+  ]
+}
